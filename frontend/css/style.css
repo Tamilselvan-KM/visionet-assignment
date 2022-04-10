@@ -1,0 +1,85 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #7e7155c7;
+}
+.container{
+    width: 80%;
+    margin: 50px auto;
+}
+.container > h1
+{
+    text-align: center;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.container #resultbox{
+    text-align: center;
+    font-weight: 600;
+    margin: 10px;
+    font-size: 20px;
+}
+form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0px auto;
+    width: 60%;
+    background: gold;
+}
+form > input{
+    width: 90%;
+    margin: 10px 0;
+    padding: 10px;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    font-size: 18px;
+    border-radius: 5px;
+}
+input:focus{
+    outline: 3px solid #7c69ef;
+}
+.arithmetic{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 60%;
+    margin: 10px 0;
+}
+button{
+    cursor: pointer;
+    padding: 8px 12px;
+    outline: none;
+    color: #fff;
+    border: none;
+    margin: 0px 3px 2px;
+}
+.arithmetic button{
+    width: 100%;
+
+}
+.arithmetic button:nth-child(1){
+    background-color: #7c69ef;
+}
+.arithmetic button:nth-child(2){
+    background-color: #42ba96;
+}
+.arithmetic button:nth-child(3){
+    background-color: #ffc107;
+}
+.arithmetic button:nth-child(4){
+    background-color: #17a2b8;
+}
+/* captialize sentence */
+.captial{
+    color: #111;
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 10px ;
+}
