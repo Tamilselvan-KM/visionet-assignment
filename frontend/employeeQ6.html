@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Details</title>
+    <style>
+        body{
+            background-color: #DCDCDC;
+        }
+        .container{
+            width: 80%;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        .row{
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+        }
+        .center{
+            justify-content: center;
+        }
+        .col-6{
+            position: relative;
+            width: 50%;
+            padding: 0 15px;
+        }
+        .empcard{
+            position: relative;
+            background-color: #fff;
+            border: 2px solid rgba(0, 0, 0, 0.125);
+            word-wrap: break-word;
+            display: flex;
+            flex-direction: column;
+            border-radius: 5px;
+        }
+        .bx{
+            box-shadow: 2px 2px 18px rgb(0 0 0 / 30%);
+        }
+        .empbody{
+            padding: 20px;
+        }
+        .title{
+            text-align: center;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+        .m-3{
+            margin-bottom:5px;
+        }
+        .empinput {
+            display: block;
+            width: 100%;
+            padding: 5px;
+            color: #495057;
+            font-size: 16px;
+            font-weight: 500;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+        .bd{
+            border: none;
+        }
+        .empinput:focus{
+            color: #495057;
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 3.2px rgb(0 123 255 / 25%);
+        }
+        .btn{
+            /* display: block; */
+            padding: 6px 12px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 400;
+            user-select: none;
+            color: #fff;
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .empview{
+            text-align: center;
+            font-size: 20px;
+            font-weight: 300;
+            margin: 10px;
+        }
+        .empview a{
+            text-decoration: none;
+        }
+        #empinfo{
+            display: none;
+        }
+        .search{
+            text-align: right;
+        }
+        #search{
+            margin: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row center">
+            <div class="col-6">
+                <div class="empcard bx" id="empcard">
+                    <div class="empbody">
+                        <div class="title">
+                            <h2>Employee Register Form</h2>
+                        </div>
+                        <form action="">
+                            <div class="m-3">
+                                <input type="text" class="empinput" id="empname" placeholder="Name">
+                            </div>
+                            <div class="m-3">
+                                <input type="text" class="empinput" id="empage" placeholder="Age">
+                            </div>
+                            <div class="m-3">
+                                <input type="date" class="empinput" id="empdoj" placeholder="doj">
+                            </div>
+                            <div class="m-3">
+                                <input type="text" class="empinput" id="empsalary" placeholder="Salary">
+                            </div>
+                            <div class="m-3">
+                                <!-- <input type="text" class="empinput" placeholder="dept"> -->
+                                <select name="" id="empdept" class="empinput">
+                                    <option value="" selected>Department</option>
+                                    <option value="cse">CSE</option>
+                                    <option value="ece">ECE</option>
+                                    <option value="eee">EEE</option>
+                                    <option value="it">IT</option>
+                                </select>
+                            </div>
+                            <div class="m-3">
+                                <div class="empinput bd" id="empgender">
+                                    Gender
+                                    <input type="radio" class="" value="male" placeholder="Male" name="gender">Male
+                                    <input type="radio" class="" value="female" placeholder="Female" name="gender">Female
+                                </div>
+                            </div>
+                            <div class="m-3">
+                                <input type="button" value="Submit" class="btn" id="savebtn">
+                            </div>
+                        </form>
+                        <div class="empview">
+                            <button  id="viewbtn" class="btn">View Employee Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="empinfo">
+                    <div class="title">
+                        <h2>Employee Details</h2>
+                    </div>
+                    <div class="search">
+                        <input type="text" id="search" placeholder="Search...">
+                    </div>
+                    <table border="collaspe">
+                        <thead>
+                            <tr>
+                                <th>Employee Name</th>
+                                <th>Employee Age</th>
+                                <th>Employee DOJ</th>
+                                <th>Employee Salary</th>
+                                <th>Employee Department</th>
+                                <th>Employee Gender</th>
+                            </tr>
+                        </thead>
+                        <tbody id="output">
+                        </tbody>
+                        
+                        <tbody id="searchView">
+                        </tbody>
+                    </table>
+                    <div class="empview">
+                        <button  id="formbtn" class="btn">View Register Form</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const savebtn = document.getElementById('savebtn');
+        const viewbtn = document.getElementById('viewbtn');
+        const formbtn = document.getElementById('formbtn');
+        const empTable = document.getElementById('empinfo');
+        const empcard = document.getElementById('empcard');
+        let output = document.querySelector('#output');
+
+        savebtn.addEventListener('click', (e)=>{
+            e.preventDefault();
+            saveEmpData()
+        })
+
+        function saveEmpData(){
+            empcard.style.display = "block";
+            empTable.style.display = "none";
+            let empname = document.getElementById('empname').value,
+                empage = document.getElementById('empage').value,
+                empdoj = document.getElementById('empdoj').value,
+                empsalary = document.getElementById('empsalary').value,
+                empdept = document.getElementById('empdept').value,
+                empgender = document.querySelector('input[name="gender"]:checked').value;
+                // empgender = document.querySelector('empgender').value;
+            if(empname == "" || empage == "" || empdoj == "" || empsalary == "" || empdept == ""){
+                alert("All fields are required");
+                document.getElementById('empname').focus();
+            }
+            let empdata = JSON.parse(localStorage.getItem('empdata'))|| [];
+            empdata.push({
+                empname, empage, empdoj, empsalary, empdept,empgender
+            });
+            localStorage.setItem('empdata', JSON.stringify(empdata));
+            alert('data inserted');
+            document.querySelector('form').reset();
+        }
+
+        viewbtn.addEventListener('click', (e)=>{
+            e.preventDefault();
+            empcard.style.display = "none";
+            viewEmpData()
+            empTable.style.display = "block";
+            searchEmpData()
+        })
+
+        function viewEmpData(){
+            let viewData = JSON.parse(localStorage.getItem('empdata'))
+            if(viewData){
+                viewData.forEach(element => {
+                    output.innerHTML += `<tr>
+                            <td>${element.empname}</td>
+                            <td>${element.empage}</td>
+                            <td>${element.empdoj}</td>
+                            <td>${element.empsalary}</td>
+                            <td>${element.empdept}</td>
+                            <td>${element.empgender}</td>
+                        </tr>`
+                });
+            }else{
+                output.innerHTML = "No Records Found"
+            }
+        }
+
+        function searchEmpData(){
+            let search = document.getElementById('search');
+            search.addEventListener('change', ()=>{
+                let newdata = JSON.parse(localStorage.getItem('empdata'))
+                    .filter(
+                        data => data.empname == search.value || data.empage == search.value || data.empdoj == search.value ||
+                                data.empsalary == search.value || data.empdept == search.value || data.empgender == search.value
+                    )
+                    output.style.display = "none";
+                    let newoutput = document.querySelector('#searchView');
+                
+                newdata.forEach(element => {
+                    newoutput.innerHTML += `<tr>
+                            <td>${element.empname}</td>
+                            <td>${element.empage}</td>
+                            <td>${element.empdoj}</td>
+                            <td>${element.empsalary}</td>
+                            <td>${element.empdept}</td>
+                            <td>${element.empgender}</td>
+                        </tr>`
+                });
+                search.value = ""
+            })
+        }
+        formbtn.addEventListener('click', (e)=>{
+            e.preventDefault();
+            location.reload()
+            saveEmpData()
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form With Validations</title>
+    <style>
+        .container{
+            width: 60%;
+            margin: 0 auto;
+            padding: 10px;
+            /* text-align: center; */
+        }
+        .logincard{
+            position: relative;
+            width: 50%;
+            margin: 0 auto;
+            background-color: #fff;
+            border: 2px solid rgba(0, 0, 0, 0.125);
+            display: flex;
+            flex-direction: column;
+            border-radius: 5px;
+            box-shadow: 2px 2px 18px rgb(0 0 0 / 30%);
+        }
+        .loginbody{
+            padding: 10px 25px;
+        }
+        .title{
+            text-align: center;
+            font-weight: 500;
+            font-size: 22px;
+        }
+        .m{
+            margin: 20px 0;
+        }
+        .userinput{
+            display: block;
+            width: 100%;
+            padding:5px;
+            font-size: 16px;
+            font-weight: 400;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: none;
+            outline: none;
+            border-bottom: 1px solid #000;
+            border-radius: 3px;
+            color: #495057;
+            position: relative;
+        }
+        .userinput:focus{
+            border-bottom: 2px solid rgb(0 123 255 / 25%);
+            color: #495057;
+        }
+        .btn{
+            /* display: block; */
+            padding: 6px 12px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 400;
+            user-select: none;
+            color: #fff;
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logincard">
+            <div class="loginbody">
+                <div class="title">
+                    <h3>LOGIN</h3>
+                </div>
+                <form action="" name="loginForm">
+                    <div class="m">
+                        <input type="text" class="userinput" placeholder="Username" name="user">
+                        <div id="userErr"></div>
+                    </div>
+                    <div class="m">
+                        <input type="password" class="userinput" placeholder="Password" name="pass" maxlength="15">
+                        <div id="passErr"></div>
+                    </div>
+                    <div class="m">
+                        <button type="submit" class="btn">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function printErr(id, msg){
+            document.getElementById(id).innerHTML = msg;
+        }
+        
+        document.querySelector('.btn').addEventListener('click', (e)=>{
+            e.preventDefault();
+            let name = document.loginForm.user.value;
+            let pass = document.loginForm.pass.value;
+
+            let userErr = passErr = true;
+            
+            let regexName = /^[a-zA-Z\s]+$/;
+            let regexPass = /^[a-zA-Z0-9!@#$%^&*]{6,15}$/;
+            if(name == ""){
+                printErr("userErr", "please enter the name field");
+                document.loginForm.user.focus()
+            }else if(!regexName.test(name)){
+                printErr("userErr", "please enter the valid name");
+                document.loginForm.user.focus()
+            }
+            else{
+                printErr("userErr", "");
+                userErr = false;
+            }
+            
+            if(pass == ""){
+                printErr("passErr", "please enter the password field"); 
+            }else if(!regexPass.test(pass)){
+                    printErr("passErr", "password should contain atleast one number and one special character");
+            }else{
+                passErr = false;
+                printErr("passErr", "");
+            }
+
+            if((userErr || passErr) == true){
+                return false
+            }else{
+                alert("Login Success");
+                document.loginForm.user.value= "";
+                document.loginForm.pass.value= "";
+                document.loginForm.user.focus()
+            }
+
+        })
+
+    </script>
+</body>
+</html>

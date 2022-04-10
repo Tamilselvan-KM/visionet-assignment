@@ -1,0 +1,99 @@
+Visionet-2022-HCJ:
+✔Create a Student Survey Form to collect the information from the student about his Name, Age, Gender, DOB, Department (select one from the list), Sport(s) they like (display a list of few sports and an option of any other sport if not listed), Programming languages they know (list the programming languages and an option of any other language if not listed) and a comments field.
+primitive(number,string,boolen,undefined), reference(object,array,function)
+
+✔Improve the look and feel of the student survey form by applying CSS
+
+Visionet-2022-HCJ:
+✔Create a simple form which takes two numbers as input and performs arithmetic operation when pressed on the respective button. Display the result on the form.
+
+Visionet-2022-HCJ:
+✔Write JS code to sort the strings of a given array of strings in the order of increasing lengths.
+
+✔There are two arrays with individual values, write a JavaScript program to compute the sum of each individual index value from the given arrays.
+Sample array:
+array1 = [1,0,2,3,4];
+array2 = [3,5,6,7,8,13];
+Expected Output : [4, 5, 8, 10, 12, 13]
+
+Visionet-2022-HCJ:
+✔Create an Employee form which collects information about employees like name, age, gender, date of joining, salary and department. Create an another form which performs a search on the employee details like date of joining or gender or salary and displays the results. Provide an option to switch between these two pages.
+
+Clear Answer
+✔Visionet-2022-HCJ:
+Write a JavaScript function that accepts a string as a parameter and converts the first letter of each word of the string in upper case.
+Example string : 'the quick brown fox' Expected Output : 'The Quick Brown Fox 
+
+Visionet-2022-HCJ:
+✔Write a JavaScript program to sort the items of an array.
+
+
+Visionet-2022-HCJ:
+✔Create a Login Authentication Screen and place necessary validations
+
+✔Visionet-2022-HCJ: Create an eCommerce Website:
+
+(Use HTML/CSS/JavaScript/Java/C# .NET)
+-	Deploy in Azure Cloud
+-	Use GitLab for versioning
+-	Containerize using Docker
+
+1)	Create a Products Entry Page
+2)	Create a Products Display (Shopping) Page
+3)	Create a Checkout Page
+4)	Create a Merchandiser Dashboard
+
+Products Page:
+
+-	Enter Product Category (drop-down from existing categories)
+-	Enter Product name
+-	Enter Effective Date of availability
+-	Enter Inventory level (number of Items available)
+-	Short Description
+-	Long Description
+-	Per unit Price
+-	Discount Percentage
+-	Active Flag (Y/N)
+
+Use validations for all fields. In-line validations after each field value is entered. 
+The form should be user friendly. Minimize typing. Use controls for date/numbers/flags. 
+Use slider for percentage. 
+The entire site should be responsive. 
+
+All the above will get stored in Products Table. 
+
+Create a Product update page. 
+
+-	Marchant should be able to update product details including inventory levels.
+
+Create the Shopping Page
+
+-	The shopping page will display the products available in products table in an Amazon like page. 
+-	Will have two buttons – 
+o	“View Details”: open a new (popup) page showing all the Product etails.
+o	“Purchase”: will open a checkout Page
+
+Checkout Page
+
+-	The checkout page will accept the following fields
+o	Number of items
+o	Calculate the total price
+o	Show the “Confirm” button.
+o	On clicking on “Confirm”, register a record in the “Transactions” table with the purchase details12:07 29-03-2022
+o	Reduce inventory in the products table.
+
+Merchandiser Dashboard
+
+-	Should show a nicely formatted Dashboard with following details
+o	Transaction History
+o	Revenue per Product (Last 1 month/1 quarter/1 year)
+o	Inventory Levels (show red if some product levels are very low)
+
+Visionet-2022-HCJ:
+✔Draw the ERD for the eCommerce Application
+
+Visionet-2022-HCJ:
+Product Id should be autoincremented/autopopulated - perform this through a separate Stored Proc and invoke from your program
+
+Visionet-2022-HCJ:
+✔Create a Graphical Loan EMI Calculator wherein the user will input the Total Loan amount, Interest Rate and Tenure - the output will the calculated EMI.

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMI - Calculator</title>
+    <style>
+            .card{         
+            position: relative;
+            background-color: #fff;
+            border: 2px solid rgba(0, 0, 0, 0.125);
+            word-wrap: break-word;
+            display: flex;
+            flex-direction: column;
+            border-radius: 5px;
+        }
+        .bx{
+            box-shadow: 2px 2px 18px rgb(0 0 0 / 30%);
+        }
+        .title{
+            text-align: center;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+        .row{
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+        }
+        .center{
+            justify-content: center;
+        }
+        .col-6{
+            position: relative;
+            width: 50%;
+            padding: 0 15px;
+        }
+        .cardbody{
+            padding: 20px;
+        }
+        .m-3{
+            margin-bottom:5px;
+        }
+        .emiinput {
+            display: block;
+            width: 100%;
+            padding: 5px;
+            color: #495057;
+            font-size: 16px;
+            font-weight: 500;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+        .emiinput:focus{
+            color: #495057;
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 3.2px rgb(0 123 255 / 25%);
+        }
+        .btn{
+            /* display: block; */
+            padding: 6px 12px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 400;
+            user-select: none;
+            color: #fff;
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        #resultBx{
+            border: 1px solid #111;
+            border-radius: 4px;
+            text-align: center;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row center">
+            <div class="col-6">
+                <div class="card bx">
+                    <div class="cardbody">
+                        <div class="title">
+                            <h2>EMI Calculator</h2>
+                        </div>
+                        <form action="">
+                            <div class="m-3">
+                                <label for="">Loan Amount</label>
+                                <input type="text" id="loanAmt" class="emiinput" required>
+                            </div>
+                            <div class="m-3">
+                                <label for="">Interest Rate</label>
+                                <input type="text" id="interest" class="emiinput" required>
+                            </div>
+                            <div class="m-3">
+                                <label for="">Tenure(in months)</label>
+                                <input type="text" id="tenure" class="emiinput" required> 
+                            </div>
+                            <div >
+                                <button type="submit" class="btn" id="btn">Calculate the EMI</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div id="resultBx">
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        //  EMI = P × r × (1 + r)n/((1 + r)n - 1)
+        let loanAmt = document.getElementById('loanAmt');
+        let interest = document.getElementById('interest');
+        let tenure = document.getElementById('tenure');
+        let btn = document.getElementById('btn');
+        let resultBx = document.getElementById('resultBx');
+
+        btn.addEventListener('click', (e)=>{
+            e.preventDefault();
+            if(loanAmt.value == "" || interest.value == "" || tenure.value == ""){
+                alert("All fields are Required");
+                loanAmt.focus();
+            }else{
+                calculateEmi(loanAmt.value, interest.value, tenure.value);
+            }
+        })
+        function calculateEmi(p, r, n){
+            var monthlyRate = parseFloat(r) / (12 * 100);
+            let up = Math.pow(1+monthlyRate, parseInt(n));
+            let down = up - 1;
+            let emi = (p * monthlyRate * (up / down)).toPrecision(5);
+            let totalAmt = parseInt(n) * parseFloat(emi);
+            let totalInterest = Math.floor(totalAmt - parseInt(p))
+            // console.log(totalAmt, totalInterest)
+            let output = `
+                    <h3>EMI : <span>${emi}</span></h3>
+                    <h3>Total Amount : <span>${totalAmt.toFixed(2)}</span></h3>
+                    <h3>Total Interest : <span>${totalInterest}</span></h3>
+                    <button class="btn" id="doAgn">Do Again</button>
+            `;
+            resultBx.innerHTML = output;
+
+            document.getElementById('doAgn').addEventListener('click', ()=>{
+                loanAmt.value = interest.value = tenure.value = "";
+                loanAmt.focus();  
+            })
+        }
+    </script>
+
+</body>
+</html>

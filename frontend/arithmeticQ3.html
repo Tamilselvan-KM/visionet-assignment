@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arithmetic Opertion</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Arithmetic Opertions</h1>
+        <form action="" id="arithmeticform">
+            <input type="number" id="field1" value="0" required>
+            <input type="number" id="field2" value="0" required>
+            <div class="arithmetic" id="arithmetic">
+                <button type="button" value="addition">ADD</button>
+                <button type="button" value="subtraction">Subtract</button>
+                <button type="button" value="multiplication">Multi</button>
+                <button type="button" value="divison">Divison</button>
+            </div>
+        </form>
+        <div id="resultbox"></div>
+    </div>
+    <script>
+        const arithmeticform = document.querySelector('#arithmeticform');
+        var field1 = document.querySelector('#field1');
+        var field2 = document.querySelector('#field2');
+        var symbol = document.querySelector('#arithmetic');
+        var resultbox = document.querySelector('#resultbox');
+
+        function arithmeticCalculation(a, b, sign){
+            var ans;
+            switch (sign) {
+                case 'addition':
+                    ans = a + b;
+                    break;
+                
+                case 'subtraction':
+                    ans = a - b;
+                    break;
+                
+                case 'multiplication':
+                    ans = a * b;
+                    break;
+                
+                case 'divison':
+                    ans = a / b;
+                    break;
+                
+                default:
+                    ans = "please put the numbers"
+                    break;
+            }
+            return ans
+        }
+        arithmeticform.addEventListener('change', (e)=>{
+            e.preventDefault();
+            num1 = Number(field1.value);
+            num2 = Number(field2.value);
+            symbol.addEventListener('click', (e)=>{
+                sign = e.target.value;
+                result = arithmeticCalculation(num1, num2, sign);
+                resultbox.innerHTML = `THE ${sign.toUpperCase()} IS ${result}`;
+            })
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captalize the sentence</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>String Case Conversion</h1>
+        <form action="" id="form">
+            <input type="text" id="sentence">
+            <button type="submit" class="captial">Click to Captalize</button>
+        </form>
+        <div id="resultbox"></div>
+    </div>
+    <script>
+        const form = document.querySelector('#form');
+        const resultbox = document.querySelector('#resultbox');
+        function captalizeSentence(text){
+            const sentenceArr = text.split(" ");
+            for(var i = 0; i < sentenceArr.length; i++){
+                sentenceArr[i] = sentenceArr[i][0].toUpperCase() + sentenceArr[i].slice(1);
+            }
+            return sentenceArr.join(" ");
+        }
+        form.addEventListener('submit', (e)=>{
+            e.preventDefault();
+            var sentence = document.querySelector('#sentence');
+            var result = captalizeSentence(sentence.value);
+            resultbox.innerHTML = result;
+            sentence.value= "";
+        })
+
+    </script>
+</body>
+</html>

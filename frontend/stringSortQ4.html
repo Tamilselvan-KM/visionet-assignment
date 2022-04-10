@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Sorting</title>
+    <style>
+        body{
+            background-color: rgb(46, 19, 73);
+        }
+        h4{
+            text-align: center;
+            font-size: 25px;
+            font-weight: 400;
+            color: rgb(73, 73, 218);
+        }
+        #arrContainer{
+            width: 80%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #111;
+            padding: 20px;
+        }
+        #ascending{
+            flex-basis: 45%;
+            text-align: center;
+            font-size: 22px;
+            font-weight: 400;
+            color: #fff;
+            word-wrap: break-word;
+        }
+        #descending{
+            flex-basis: 45%;
+            text-align: center;
+            font-size: 22px;
+            font-weight: 400;
+            color: #fff;
+        }
+        .btnbx{
+            text-align: center;
+            margin: 5px;
+        }
+        .btnbx button{
+            padding: 6px 12px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 400;
+            user-select: none;
+            color: #fff;
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+    </style>
+</head>
+
+<body>
+    <h4>String Array Sorting Based on String length</h4>
+    <div id="arrContainer">
+        <div id="ascending"></div>
+        <div id="descending"></div>
+    </div>
+    <div class="btnbx">
+
+        <button id="btn">Click Me :-)</button>
+    </div>
+    
+    <script>
+    let ascending = document.getElementById('ascending');
+    let descending = document.getElementById('descending');
+    let btn = document.getElementById('btn');
+    let i;
+    arrString = [
+                ['banana', 'apple', 'grapes', 'strawberry', 'lemon'],
+                ["Saab", "Volvo", "BMW"],
+                ["Potato", "Tomato", "Brinjal", "Cabbage", "carrot"],
+                ["Peacock", "Pigeon", "Parrot", "Sparrow", "Swan", "Crow", "Eagle"]
+            ]
+    n = arrString.length;
+    btn.addEventListener('click', ()=>{
+        i = Math.floor(Math.random() * n)
+        stringSorting(i)
+    })
+    function stringSorting(num){
+        let mainArr = num < 4 ? arrString[num] : arrString[3];
+
+        //ascending order
+        ascending.innerHTML = "The Ascending order <br>" + mainArr.sort((a, b) => {
+            return a.length - b.length;
+        });
+
+        //descending order
+        descending.innerHTML = "The Descending order <br>" + mainArr.sort((a, b) => {
+            return b.length - a.length;
+        })
+    }
+    </script>
+</body>
+</html>
